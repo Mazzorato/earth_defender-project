@@ -1,5 +1,5 @@
 import { GameObject } from "./GameObjects/GameObject.js";
-
+import { Player } from "./GameObjects/Player.js";
 export class Game {
 
     private context: CanvasRenderingContext2D;
@@ -12,16 +12,20 @@ export class Game {
         canvas.height = this.CANVAS_HEIGHT;
         this.context = canvas.getContext("2d");
     }
-
+    private player : Player;
     public start(): void {
         this.context.clearRect(0, 0, this.CANVAS_WIDTH, this.CANVAS_HEIGHT);
         this.context.fillStyle = "#141414";
         this.context.fillRect(0, 0, this.CANVAS_WIDTH, this.CANVAS_HEIGHT);
     
         //J'instancie un GameObject
-        const gameObject = new GameObject();
+        const gameObject = new GameObject(this);
+        this.player = new Player (this);
         //Je le dessine 
         this.draw(gameObject);
+        
+
+        this.loop();
     
     }
 
@@ -33,6 +37,12 @@ export class Game {
             gameObject.getImage().width,
             gameObject.getImage().height
         );
+    }
+
+    private loop(){
+        setInterval(()=>{
+            //console.log("Frame");
+        },10);
     }
 }
 
