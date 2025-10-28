@@ -19,10 +19,12 @@ export class GameObject {
         this.start();
 
     }
-    protected start() {
-
-    }
+    protected start() {}
     protected update() { }
+    protected collide(other : GameObject) {}
+    public callCollide(other : GameObject){
+        this.collide(other);
+    }
     public callUpdate() {
         this.update();
     }

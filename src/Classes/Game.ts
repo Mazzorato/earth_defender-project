@@ -84,10 +84,12 @@ export class Game {
                 this.draw(go);
 
                 // methode overlap
-                if(go instanceof Alien && this.player.overlap(go)){ 
-                console.log("Alien touche le joueur");
-                go.callCollide(this.player);
-                }
+                 this.gameObjects.forEach(other=>{
+                    if(other != go && go.overlap(other)){
+                        console.log("Deux GameObject différent se touches");
+                        go.callCollide(other);
+                    }
+                });
             })
         }, 10);
     }
