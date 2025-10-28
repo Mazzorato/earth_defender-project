@@ -17,6 +17,50 @@ export class GameObject {
         this.game = game;
 
         this.start();
+
+    }
+    protected start() {
+
+    }
+    protected update() { }
+    public callUpdate() {
+        this.update();
+    }
+
+    public overlap(other: GameObject): boolean {
+        const L = this.left()
+        const L1 = other.left()
+
+        const R = this.right()
+        const R1 = other.right()
+
+        const T = this.top()
+        const T1 = other.top()
+
+        const B = this.bottom()
+        const B1 = other.bottom()
+
+        if (this.left() <= other.right() &&
+            this.right() >= other.left() &&
+            this.top() <= other.bottom() &&
+            this.bottom() >= other.top()) {
+            return true;
+        }
+            return false;
+        
+    }
+
+    public top(): number {
+        return this.position.y;
+    }
+    public bottom(): number {
+        return this.position.y + this.image.height;
+    }
+    public left(): number {
+        return this.position.x;
+    }
+    public right(): number {
+        return this.position.x + this.image.width;
     }
 
     // Getter d'image et de position
@@ -35,9 +79,6 @@ export class GameObject {
     public setPosition(position: Position) {
         this.position = position;
     }
-    protected start() {
 
-    }
 }
 
- 

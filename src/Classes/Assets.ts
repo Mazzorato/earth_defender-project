@@ -14,4 +14,18 @@ export class Assets {
         }
         return image;
     }
+
+    public static getAlienImage() : HTMLImageElement{
+        const image : HTMLImageElement = document.querySelector("img#asset_alien");
+        if(image == null)  throw Error ("No assets found");
+        
+        return image;
+    }
+
+    public static getStarImage() : HTMLImageElement{
+        const image : HTMLImageElement = document.querySelector("img#asset_star");
+        if(image == null) throw Error ("No assets found");
+        
+        return image;
+    }
 }
