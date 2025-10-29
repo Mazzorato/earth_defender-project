@@ -28,4 +28,16 @@ export class Assets {
         
         return image;
     }
+
+    public static getLaserImage() : HTMLImageElement{
+        const image : HTMLImageElement = document.querySelector("img#asset_laser");
+        if(image == null) throw Error ("No assets found");
+        return image;
+    }
+
+    public static getEarthImage() : HTMLImageElement{
+        const image : HTMLImageElement = document.querySelector("img#asset_earth");
+        if(image == null) throw Error ("No assets found");
+        return image;
+    }
 }

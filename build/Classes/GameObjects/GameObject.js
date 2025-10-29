@@ -9,9 +9,12 @@ var GameObject = /** @class */ (function () {
         this.game = game;
         this.start();
     }
-    GameObject.prototype.start = function () {
-    };
+    GameObject.prototype.start = function () { };
     GameObject.prototype.update = function () { };
+    GameObject.prototype.collide = function (other) { };
+    GameObject.prototype.callCollide = function (other) {
+        this.collide(other);
+    };
     GameObject.prototype.callUpdate = function () {
         this.update();
     };

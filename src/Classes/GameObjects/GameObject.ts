@@ -2,6 +2,8 @@ import { Assets } from "../Assets.js";
 import { Game } from "../Game.js";
 import { Position } from "./Position.js";
 
+
+
 export class GameObject {
 
     private position: Position;
@@ -22,6 +24,8 @@ export class GameObject {
     protected start() {}
     protected update() { }
     protected collide(other : GameObject) {}
+
+
     public callCollide(other : GameObject){
         this.collide(other);
     }

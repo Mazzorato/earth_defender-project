@@ -27,6 +27,18 @@ var Assets = /** @class */ (function () {
             throw Error("No assets found");
         return image;
     };
+    Assets.getLaserImage = function () {
+        var image = document.querySelector("img#asset_laser");
+        if (image == null)
+            throw Error("No assets found");
+        return image;
+    };
+    Assets.getEarthImage = function () {
+        var image = document.querySelector("img#asset_earth");
+        if (image == null)
+            throw Error("No assets found");
+        return image;
+    };
     return Assets;
 }());
 export { Assets };

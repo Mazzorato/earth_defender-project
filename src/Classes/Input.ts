@@ -1,12 +1,19 @@
 export class Input{
     
     private static axisX : Direction = 0;
+    private static isShooting : boolean = false;
     public static getAxisX() : Direction {
         return this.axisX;
     }
+    public static getIsShooting() : boolean{
+        return Input.isShooting;
+    }
+
+
     public static listen () {
         //Key Down
         document.addEventListener("keydown", (event)=> {
+           // console.log(event.key);
             switch (event.key) {
                 //Droite
                 case "d":
@@ -17,6 +24,9 @@ export class Input{
                 case "q":
                 case "Q":
                     Input.axisX = -1;
+                    break;
+                case " ":
+                    Input.isShooting = true;
                     break;
                 default:
                     break;
@@ -33,6 +43,9 @@ export class Input{
                 case "Q":
                     Input.axisX = 0;
                     break;
+                case " ":
+                    Input.isShooting = false;
+                    break;
                 default: 
                     break;
             }
@@ -41,3 +54,4 @@ export class Input{
 }
 
 export type Direction = 0 | 1 | -1;
+

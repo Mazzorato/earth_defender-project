@@ -13,34 +13,26 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-import { Assets } from "../Assets.js";
-import { GameObject } from "./GameObject.js";
-var Star = /** @class */ (function (_super) {
-    __extends(Star, _super);
-    function Star() {
-        var _this = _super !== null && _super.apply(this, arguments) || this;
-        _this.speed = 1;
-        return _this;
+import { Assets } from "../Assets";
+import { GameObject } from "./GameObject";
+var Earth = /** @class */ (function (_super) {
+    __extends(Earth, _super);
+    function Earth() {
+        return _super !== null && _super.apply(this, arguments) || this;
     }
-    Star.prototype.start = function () {
-        this.setImage(Assets.getStarImage());
+    Earth.prototype.start = function () {
+        this.setImage(Assets.getEarthImage());
         this.setPosition({
-            x: Math.random() * this.getGame().CANVAS_WIDTH,
-            y: Math.random() * this.getGame().CANVAS_HEIGHT - 10,
+            x: this.getGame().CANVAS_WIDTH / 2 - this.getImage().width / 2,
+            y: this.getGame().CANVAS_HEIGHT - this.getImage().height - 10
         });
     };
-    Star.prototype.update = function () {
+    Earth.prototype.update = function () {
         this.setPosition({
             x: this.getPosition().x,
-            y: this.getPosition().y + 1
+            y: this.getPosition().y
         });
-        if (this.getPosition().y > this.getGame().CANVAS_HEIGHT) {
-            this.setPosition({
-                x: this.getPosition().x,
-                y: 0
-            });
-        }
     };
-    return Star;
+    return Earth;
 }(GameObject));
-export { Star };
+export { Earth };

@@ -3,6 +3,8 @@ import { Player } from "./GameObjects/Player.js";
 import { Input } from "./Input.js";
 import { Alien } from "./GameObjects/Alien.js";
 import { Star } from "./GameObjects/Star.js";
+import { Laser } from "./GameObjects/Laser.js";
+import { Earth } from "./GameObjects/Earth.js";
 
 
 export class Game {
@@ -17,7 +19,8 @@ export class Game {
     private player: Player;
     private nbAliens: number = 10;
     private gameObjects: GameObject[] = [];
-    private nbstar : number = 100;
+    private nbstar: number = 50;
+    
 
     constructor() {
         const canvas: HTMLCanvasElement = document.querySelector("canvas");
@@ -30,6 +33,8 @@ export class Game {
         this.context.clearRect(0, 0, this.CANVAS_WIDTH, this.CANVAS_HEIGHT);
         this.context.fillStyle = "#141414";
         this.context.fillRect(0, 0, this.CANVAS_WIDTH, this.CANVAS_HEIGHT);
+
+
 
         //J'instancie un GameObject
         const gameObject = new GameObject(this);
@@ -47,19 +52,24 @@ export class Game {
         }
 
         
-
+        
         for (let i = 0; i < this.nbstar; i++) {
             this.instanciate(new Star(this));
         }
         Input.listen();
-
-
+        
+        
         this.loop();
     }
     //tableau vide de GameObject
-
+    public destroy(gameObject : GameObject) : void{
+        this.gameObjects = this.gameObjects.filter(go=>go!=gameObject);  
+    }
     public instanciate(gameObject: GameObject): void {
         this.gameObjects.push(gameObject);
+    }
+    public getPlayer() : Player {
+        return this.player;
     }
     private draw(gameObject: GameObject) {
         this.context.drawImage(
@@ -70,11 +80,16 @@ export class Game {
             gameObject.getImage().height
         );
     }
+    //private isOver = false;
+    public over(): void {
+      //  if (this.isOver) return;
+        //this.isOver = true;
+        alert("GameOver");
+        window.location.reload();
+    }
 
     private loop() {
         setInterval(() => {
-            //console.log("Frame");
-
             this.context.clearRect(0, 0, this.CANVAS_WIDTH, this.CANVAS_HEIGHT);
             this.context.fillStyle = "#141414";
             this.context.fillRect(0, 0, this.CANVAS_WIDTH, this.CANVAS_HEIGHT);
@@ -83,15 +98,13 @@ export class Game {
                 go.callUpdate();
                 this.draw(go);
 
-                // methode overlap
-                 this.gameObjects.forEach(other=>{
-                    if(other != go && go.overlap(other)){
-                        console.log("Deux GameObject différent se touches");
-                        go.callCollide(other);
+                this.gameObjects.forEach(other => {
+                    if (other !== go && go.overlap(this.player)) {
+                        //console.log("Alien touche le joueur");
+                        go.callCollide(this.player);
                     }
-                });
-            })
+                })
+            });
         }, 10);
     }
 }
-

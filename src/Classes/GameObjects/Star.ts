@@ -2,7 +2,7 @@ import { Assets } from "../Assets.js";
 import { GameObject } from "./GameObject.js";
 
 export class Star extends GameObject{
-    private speed : number = 0.5;
+    private speed : number = 1;
 
     protected start(): void {
         this.setImage(Assets.getStarImage());
