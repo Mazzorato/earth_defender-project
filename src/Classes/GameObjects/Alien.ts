@@ -4,7 +4,7 @@ import { Player } from "./Player.js";
 
 
 export class Alien extends GameObject{
-    private speed : number = 1;
+    private speed : number = 0.2;
 
     protected start(): void {
         this.setImage(Assets.getAlienImage());

@@ -20,7 +20,7 @@ var Alien = /** @class */ (function (_super) {
     __extends(Alien, _super);
     function Alien() {
         var _this = _super !== null && _super.apply(this, arguments) || this;
-        _this.speed = 1;
+        _this.speed = 0.2;
         return _this;
     }
     Alien.prototype.start = function () {

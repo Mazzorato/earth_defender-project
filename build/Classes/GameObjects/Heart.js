@@ -15,24 +15,24 @@ var __extends = (this && this.__extends) || (function () {
 })();
 import { Assets } from "../Assets.js";
 import { GameObject } from "./GameObject.js";
-var Earth = /** @class */ (function (_super) {
-    __extends(Earth, _super);
-    function Earth() {
+var Heart = /** @class */ (function (_super) {
+    __extends(Heart, _super);
+    function Heart() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
-    Earth.prototype.start = function () {
-        this.setImage(Assets.getEarthImage());
+    Heart.prototype.start = function () {
+        this.setImage(Assets.getHeartImage());
         this.setPosition({
-            x: this.getGame().CANVAS_WIDTH / 2 - this.getImage().width / 2,
-            y: this.getGame().CANVAS_HEIGHT - this.getImage().height - 10
+            x: this.getGame().CANVAS_WIDTH - this.getImage().width,
+            y: this.getGame().CANVAS_HEIGHT - this.getImage().height
         });
     };
-    Earth.prototype.update = function () {
+    Heart.prototype.update = function () {
         this.setPosition({
             x: this.getPosition().x,
             y: this.getPosition().y
         });
     };
-    return Earth;
+    return Heart;
 }(GameObject));
-export { Earth };
+export { Heart };

@@ -29,7 +29,7 @@ var Player = /** @class */ (function (_super) {
         this.setImage(Assets.getPlayerImage());
         this.setPosition({
             x: this.getGame().CANVAS_WIDTH / 2 - this.getImage().width / 2,
-            y: this.getGame().CANVAS_HEIGHT - this.getImage().height - 10
+            y: this.getGame().CANVAS_HEIGHT - this.getImage().height - 80
         });
     };
     ;

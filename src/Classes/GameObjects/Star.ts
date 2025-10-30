@@ -1,29 +1,23 @@
-import { Assets } from "../Assets.js";
 import { GameObject } from "./GameObject.js";
+import { Assets } from "../Assets.js";
 
-export class Star extends GameObject{
-    private speed : number = 1;
+export class Star extends GameObject {
+    private verticalSpeed: number = 0.3;
 
     protected start(): void {
-        this.setImage(Assets.getStarImage());
-
+        const starImage = Assets.getStarImage?.() ?? Assets.getDefaultImage();
+        this.setImage(starImage);
+        const game = this.getGame();
         this.setPosition({
-            x : Math.random() * this.getGame().CANVAS_WIDTH,
-            y : Math.random() * this.getGame().CANVAS_HEIGHT - 10,
+            x: Math.floor(Math.random() * game.CANVAS_WIDTH),
+            y: Math.floor(Math.random() * game.CANVAS_HEIGHT)
         });
     }
 
-    protected update():void{
-
-        this.setPosition({
-            x : this.getPosition().x,
-            y : this.getPosition().y +1
-        });
-        if(this.getPosition().y > this.getGame().CANVAS_HEIGHT){
-            this.setPosition({
-                x : this.getPosition().x,
-                y : 0
-            });
-        }
+    protected update(): void {
+        const game = this.getGame();
+        const position = this.getPosition();
+        position.y += 0.3;
+        if (position.y >= game.CANVAS_HEIGHT) position.y = 0;
     }
 }

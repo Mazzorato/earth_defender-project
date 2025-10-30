@@ -39,6 +39,12 @@ var Assets = /** @class */ (function () {
             throw Error("No assets found");
         return image;
     };
+    Assets.getHeartImage = function () {
+        var image = document.querySelector("img#asset_heart");
+        if (image == null)
+            throw Error("No assets found");
+        return image;
+    };
     return Assets;
 }());
 export { Assets };
